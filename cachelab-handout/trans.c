@@ -171,63 +171,17 @@ static inline __attribute__((always_inline)) void solve32times32(int M,int N,int
     solve_diag8(M,N,A,B,24);
 }
 
+void solve88_6464(int M,int N,int A[N][M],int B[M][N],int ax,int ay,int bx,int by){
+    
+}
+
 static inline __attribute__((always_inline)) void solve64times64(int M,int N,int A[N][M],int B[M][N]){
-    transpose_submat(M,N,A,B,0,8,8,0,8,8);
-    transpose_submat(M,N,A,B,0,16,16,0,8,8);
-    transpose_submat(M,N,A,B,0,24,24,0,8,8);
-    transpose_submat(M,N,A,B,0,32,32,0,8,8);
-    transpose_submat(M,N,A,B,0,40,40,0,8,8);
-    transpose_submat(M,N,A,B,0,48,48,0,8,8);
-    transpose_submat(M,N,A,B,0,56,56,0,8,8);
-    transpose_submat(M,N,A,B,8,0,0,8,8,8);
-    transpose_submat(M,N,A,B,8,16,16,8,8,8);
-    transpose_submat(M,N,A,B,8,24,24,8,8,8);
-    transpose_submat(M,N,A,B,8,32,32,8,8,8);
-    transpose_submat(M,N,A,B,8,40,40,8,8,8);
-    transpose_submat(M,N,A,B,8,48,48,8,8,8);
-    transpose_submat(M,N,A,B,8,56,56,8,8,8);
-    transpose_submat(M,N,A,B,16,0,0,16,8,8);
-    transpose_submat(M,N,A,B,16,8,8,16,8,8);
-    transpose_submat(M,N,A,B,16,24,24,16,8,8);
-    transpose_submat(M,N,A,B,16,32,32,16,8,8);
-    transpose_submat(M,N,A,B,16,40,40,16,8,8);
-    transpose_submat(M,N,A,B,16,48,48,16,8,8);
-    transpose_submat(M,N,A,B,16,56,56,16,8,8);
-    transpose_submat(M,N,A,B,24,0,0,24,8,8);
-    transpose_submat(M,N,A,B,24,8,8,24,8,8);
-    transpose_submat(M,N,A,B,24,16,16,24,8,8);
-    transpose_submat(M,N,A,B,24,32,32,24,8,8);
-    transpose_submat(M,N,A,B,24,40,40,24,8,8);
-    transpose_submat(M,N,A,B,24,48,48,24,8,8);
-    transpose_submat(M,N,A,B,24,56,56,24,8,8);
-    transpose_submat(M,N,A,B,32,0,0,32,8,8);
-    transpose_submat(M,N,A,B,32,8,8,32,8,8);
-    transpose_submat(M,N,A,B,32,16,16,32,8,8);
-    transpose_submat(M,N,A,B,32,24,24,32,8,8);
-    transpose_submat(M,N,A,B,32,40,40,32,8,8);
-    transpose_submat(M,N,A,B,32,48,48,32,8,8);
-    transpose_submat(M,N,A,B,32,56,56,32,8,8);
-    transpose_submat(M,N,A,B,40,0,0,40,8,8);
-    transpose_submat(M,N,A,B,40,8,8,40,8,8);
-    transpose_submat(M,N,A,B,40,16,16,40,8,8);
-    transpose_submat(M,N,A,B,40,24,24,40,8,8);
-    transpose_submat(M,N,A,B,40,32,32,40,8,8);
-    transpose_submat(M,N,A,B,40,48,48,40,8,8);
-    transpose_submat(M,N,A,B,40,56,56,40,8,8);
-    transpose_submat(M,N,A,B,48,0,0,48,8,8);
-    transpose_submat(M,N,A,B,48,8,8,48,8,8);
-    transpose_submat(M,N,A,B,48,16,16,48,8,8);
-    transpose_submat(M,N,A,B,48,24,24,48,8,8);
-    transpose_submat(M,N,A,B,48,32,32,48,8,8);
-    transpose_submat(M,N,A,B,48,40,40,48,8,8);
-    transpose_submat(M,N,A,B,48,56,56,48,8,8);
-    transpose_submat(M,N,A,B,56,0,0,56,8,8);
-    transpose_submat(M,N,A,B,56,8,8,56,8,8);
-    transpose_submat(M,N,A,B,56,16,16,56,8,8);
-    transpose_submat(M,N,A,B,56,24,24,56,8,8);
-    transpose_submat(M,N,A,B,56,32,32,56,8,8);
-    transpose_submat(M,N,A,B,56,40,40,56,8,8);
-    transpose_submat(M,N,A,B,56,48,48,56,8,8);
+    for (int i = 0;i < 8;i++){
+        for (int j = 0;j < 8;j++){
+            if (i == j) continue;
+            transpose_submat(M,N,A,B,i * 8,j * 8,j * 8,i * 8,8,8);
+        }
+    }
     for (int i = 0;i < 8;i++) solve_diag8(M,N,A,B,i * 8);
 }
 
@@ -260,7 +214,8 @@ char trans_desc[] = "Simple row-wise scan transpose";
 void trans(int M, int N, int A[N][M], int B[M][N])
 {
     int i, j, tmp;
-
+    for (i = 0;i < 50;i++) tmp = A[0][0];
+    for (i = 0;i < 50;i++) tmp = B[0][0];
     for (i = 0; i < N; i++) {
         for (j = 0; j < M; j++) {
             tmp = A[i][j];
