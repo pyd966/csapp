@@ -23,70 +23,11 @@ int is_transpose(int M, int N, int A[N][M], int B[M][N]);
  */
 
 static inline __attribute__((always_inline)) void transpose_submat(int M,int N,int A[N][M],int B[M][N],int ax,int ay,int bx,int by,int xs,int ys){//xs ys based on A
-    B[bx + 0][ax + 0] = A[ax + 0][ay + 0];
-    B[bx + 1][ax + 0] = A[ax + 0][ay + 1];
-    B[bx + 2][ax + 0] = A[ax + 0][ay + 2];
-    B[bx + 3][ax + 0] = A[ax + 0][ay + 3];
-    B[bx + 4][ax + 0] = A[ax + 0][ay + 4];
-    B[bx + 5][ax + 0] = A[ax + 0][ay + 5];
-    B[bx + 6][ax + 0] = A[ax + 0][ay + 6];
-    B[bx + 7][ax + 0] = A[ax + 0][ay + 7];
-    B[bx + 0][ax + 1] = A[ax + 1][ay + 0];
-    B[bx + 1][ax + 1] = A[ax + 1][ay + 1];
-    B[bx + 2][ax + 1] = A[ax + 1][ay + 2];
-    B[bx + 3][ax + 1] = A[ax + 1][ay + 3];
-    B[bx + 4][ax + 1] = A[ax + 1][ay + 4];
-    B[bx + 5][ax + 1] = A[ax + 1][ay + 5];
-    B[bx + 6][ax + 1] = A[ax + 1][ay + 6];
-    B[bx + 7][ax + 1] = A[ax + 1][ay + 7];
-    B[bx + 0][ax + 2] = A[ax + 2][ay + 0];
-    B[bx + 1][ax + 2] = A[ax + 2][ay + 1];
-    B[bx + 2][ax + 2] = A[ax + 2][ay + 2];
-    B[bx + 3][ax + 2] = A[ax + 2][ay + 3];
-    B[bx + 4][ax + 2] = A[ax + 2][ay + 4];
-    B[bx + 5][ax + 2] = A[ax + 2][ay + 5];
-    B[bx + 6][ax + 2] = A[ax + 2][ay + 6];
-    B[bx + 7][ax + 2] = A[ax + 2][ay + 7];
-    B[bx + 0][ax + 3] = A[ax + 3][ay + 0];
-    B[bx + 1][ax + 3] = A[ax + 3][ay + 1];
-    B[bx + 2][ax + 3] = A[ax + 3][ay + 2];
-    B[bx + 3][ax + 3] = A[ax + 3][ay + 3];
-    B[bx + 4][ax + 3] = A[ax + 3][ay + 4];
-    B[bx + 5][ax + 3] = A[ax + 3][ay + 5];
-    B[bx + 6][ax + 3] = A[ax + 3][ay + 6];
-    B[bx + 7][ax + 3] = A[ax + 3][ay + 7];
-    B[bx + 0][ax + 4] = A[ax + 4][ay + 0];
-    B[bx + 1][ax + 4] = A[ax + 4][ay + 1];
-    B[bx + 2][ax + 4] = A[ax + 4][ay + 2];
-    B[bx + 3][ax + 4] = A[ax + 4][ay + 3];
-    B[bx + 4][ax + 4] = A[ax + 4][ay + 4];
-    B[bx + 5][ax + 4] = A[ax + 4][ay + 5];
-    B[bx + 6][ax + 4] = A[ax + 4][ay + 6];
-    B[bx + 7][ax + 4] = A[ax + 4][ay + 7];
-    B[bx + 0][ax + 5] = A[ax + 5][ay + 0];
-    B[bx + 1][ax + 5] = A[ax + 5][ay + 1];
-    B[bx + 2][ax + 5] = A[ax + 5][ay + 2];
-    B[bx + 3][ax + 5] = A[ax + 5][ay + 3];
-    B[bx + 4][ax + 5] = A[ax + 5][ay + 4];
-    B[bx + 5][ax + 5] = A[ax + 5][ay + 5];
-    B[bx + 6][ax + 5] = A[ax + 5][ay + 6];
-    B[bx + 7][ax + 5] = A[ax + 5][ay + 7];
-    B[bx + 0][ax + 6] = A[ax + 6][ay + 0];
-    B[bx + 1][ax + 6] = A[ax + 6][ay + 1];
-    B[bx + 2][ax + 6] = A[ax + 6][ay + 2];
-    B[bx + 3][ax + 6] = A[ax + 6][ay + 3];
-    B[bx + 4][ax + 6] = A[ax + 6][ay + 4];
-    B[bx + 5][ax + 6] = A[ax + 6][ay + 5];
-    B[bx + 6][ax + 6] = A[ax + 6][ay + 6];
-    B[bx + 7][ax + 6] = A[ax + 6][ay + 7];
-    B[bx + 0][ax + 7] = A[ax + 7][ay + 0];
-    B[bx + 1][ax + 7] = A[ax + 7][ay + 1];
-    B[bx + 2][ax + 7] = A[ax + 7][ay + 2];
-    B[bx + 3][ax + 7] = A[ax + 7][ay + 3];
-    B[bx + 4][ax + 7] = A[ax + 7][ay + 4];
-    B[bx + 5][ax + 7] = A[ax + 7][ay + 5];
-    B[bx + 6][ax + 7] = A[ax + 7][ay + 6];
-    B[bx + 7][ax + 7] = A[ax + 7][ay + 7];
+    for (int i = 0;i < xs;i++){
+        for (int j = 0;j < ys;j++){
+            B[bx + i][ax + j] = A[ax + j][ay + i];
+        }
+    }
 }
 
 static inline __attribute__((always_inline)) void solve_diag8(int M,int N,int A[N][M],int B[M][N],int s){
@@ -172,21 +113,157 @@ static inline __attribute__((always_inline)) void solve32times32(int M,int N,int
 }
 
 void solve88_6464(int M,int N,int A[N][M],int B[M][N],int ax,int ay,int bx,int by){
+    for (int i = 0;i < 4;i++){
+        for (int j = 0;j < 4;j++){
+            B[bx + j][by + i] = A[ax + i][ay + j];
+        }
+    }
+    int p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
+    p0 = A[ax][ay + 4],p1 = A[ax][ay + 5],p2 = A[ax][ay + 6],p3 = A[ax][ay + 7];
+    p4 = A[ax + 1][ay + 4],p5 = A[ax + 1][ay + 5],p6 = A[ax + 1][ay + 6],p7 = A[ax + 1][ay + 7];
+    p8 = A[ax + 2][ay + 4],p9 = A[ax + 2][ay + 5],p10 = A[ax + 2][ay + 6],p11 = A[ax + 2][ay + 7];
+    for (int i = 4;i < 7;i++){
+        for (int j = 0;j < 4;j++) B[bx + j][by + i] = A[ax + i][ay + j];
+    }
+    B[bx + 4][by] = p0,B[bx + 4][by + 1] = p4,B[bx + 4][by + 2] = p8;
+    B[bx + 5][by] = p1,B[bx + 5][by + 1] = p5,B[bx + 5][by + 2] = p9;
+    p0 = A[ax + 3][ay + 4],p1 = A[ax + 3][ay + 5],p4 = A[ax + 3][ay + 6],p5 = A[ax + 3][ay + 7];
+    B[bx + 2][by + 7] = A[ax + 7][ay + 2],B[bx + 3][by + 7] = A[ax + 7][ay + 3];
+    B[bx + 4][by + 3] = p0,B[bx + 5][by + 3] = p1;
+    B[bx + 6][by] = p2,B[bx + 6][by + 1] = p6,B[bx + 6][by + 2] = p10,B[bx + 6][by + 3] = p4;
+    B[bx + 7][by] = p3,B[bx + 7][by + 1] = p7,B[bx + 7][by + 2] = p11,B[bx + 7][by + 3] = p5;
+    for (int i = 4;i < 8;i++){
+        for (int j = 4;j < 8;j++){
+            B[bx + j][by + i] = A[ax + i][ay + j];
+        }
+    }
+    B[bx][by + 7] = A[ax + 7][ay],B[bx + 1][by + 7] = A[ax + 7][ay + 1];
+}
+
+void solved8_6464(int M,int N,int A[N][M],int B[M][N],int s){
+    int a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11;
+    B[s+2][s+0] = A[s+0][s+2],B[s+2][s+1] = A[s+1][s+2],B[s+3][s+0] = A[s+0][s+3],B[s+3][s+1] = A[s+1][s+3];
+    a0 = A[s+0][s+0],a1 = A[s+0][s+1],a2 = A[s+1][s+0],a3 = A[s+1][s+1];
+    a4 = A[s+0][s+4],a5 = A[s+0][s+5],a6 = A[s+1][s+4],a7 = A[s+1][s+5];
+    a8 = A[s+0][s+6],a9 = A[s+0][s+7],a10 = A[s+1][s+6],a11 = A[s+1][s+7];
+    B[s+4][s+0] = a4,B[s+4][s+1] = a6,B[s+5][s+0] = a5,B[s+5][s+1] = a7;
+    B[s+4][s+2] = A[s+2][s+4],B[s+4][s+3] = A[s+3][s+4],B[s+5][s+2] = A[s+2][s+5],B[s+5][s+3] = A[s+3][s+5];
+    a4 = A[s+2][s+0],a5 = A[s+2][s+1],a6 = A[s+3][s+0],a7 = A[s+3][s+1];
+    B[s+0][s+0] = a0,B[s+1][s+0] = a1,B[s+0][s+1] = a2,B[s+1][s+1] = a3;
+    B[s+0][s+2] = a4,B[s+1][s+2] = a5,B[s+0][s+3] = a6,B[s+1][s+3] = a7;
+    B[s+0][s+6] = A[s+6][s+0],B[s+0][s+7] = A[s+7][s+0],B[s+1][s+6] = A[s+6][s+1],B[s+1][s+7] = A[s+7][s+1];
+    a0 = A[s+6][s+4],a1 = A[s+6][s+5],a2 = A[s+7][s+4],a3 = A[s+7][s+5];
+    a4 = A[s+6][s+6],a5 = A[s+6][s+7],a6 = A[s+7][s+6],a7 = A[s+7][s+7];
+    B[s+6][s+4] = A[s+4][s+6],B[s+6][s+5] = A[s+5][s+6],B[s+7][s+4] = A[s+4][s+7],B[s+7][s+5] = A[s+5][s+7];
+    B[s+6][s+0] = a8,B[s+6][s+1] = a10,B[s+7][s+0] = a9,B[s+7][s+1] = a11;
+    B[s+6][s+6] = a4,B[s+6][s+7] = a6,B[s+7][s+6] = a5,B[s+7][s+7] = a7;
+    a4 = A[s+4][s+4],a5 = A[s+4][s+5],a6 = A[s+5][s+4],a7 = A[s+5][s+5];
+    B[s+4][s+4] = a4,B[s+5][s+4] = a5,B[s+4][s+5] = a6,B[s+5][s+5] = a7;
+    B[s+4][s+6] = a0,B[s+5][s+6] = a1,B[s+4][s+7] = a2,B[s+5][s+7] = a3;
+    a0 = A[s+2][s+2],a1 = A[s+2][s+3],a2 = A[s+3][s+2],a3 = A[s+3][s+3];
+    a4 = A[s+2][s+6],a5 = A[s+2][s+7],a6 = A[s+3][s+6],a7 = A[s+3][s+7];
+    B[s+6][s+2] = a4,B[s+6][s+3] = a6,B[s+7][s+2] = a5,B[s+7][s+3] = a7;
+    a4 = A[s+4][s+0],a5 = A[s+4][s+1],a6 = A[s+5][s+0],a7 = A[s+5][s+1];
+    a8 = A[s+4][s+2],a9 = A[s+4][s+3],a10 = A[s+5][s+2],a11 = A[s+5][s+3];
+    B[s+0][s+4] = a4,B[s+0][s+5] = a6,B[s+1][s+4] = a5,B[s+1][s+5] = a7;
+    a4 = A[s+6][s+2],a5 = A[s+6][s+3],a6 = A[s+7][s+2],a7 = A[s+7][s+3];
+    B[s+2][s+2] = a0,B[s+3][s+2] = a1,B[s+2][s+3] = a2,B[s+3][s+3] = a3;
+    B[s+2][s+4] = a8,B[s+2][s+5] = a10,B[s+3][s+4] = a9,B[s+3][s+5] = a11;
+    B[s+2][s+6] = a4,B[s+2][s+7] = a6,B[s+3][s+6] = a5,B[s+3][s+7] = a7;
+    // for (int i=0;i<=1;i++) for (int j=0;j<=7;j++) B[s+i][s+j] = A[s+j][s+i];
     
+    // for (int i=2;i<=3;i++) for (int j=0;j<=1;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=2;i<=3;i++) for (int j=2;j<=3;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=2;i<=3;i++) for (int j=4;j<=5;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=2;i<=3;i++) for (int j=6;j<=7;j++) B[s+i][s+j] = A[s+j][s+i];
+
+    // for (int i=4;i<=5;i++) for (int j=0;j<=1;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=4;i<=5;i++) for (int j=2;j<=3;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=4;i<=5;i++) for (int j=4;j<=5;j++) B[s+i][s+j] = A[s+j][s+i];
+    // for (int i=4;i<=5;i++) for (int j=6;j<=7;j++) B[s+i][s+j] = A[s+j][s+i];
+
+    // for (int i=6;i<=7;i++) for (int j=0;j<=7;j++) B[s+i][s+j] = A[s+j][s+i];
 }
 
 static inline __attribute__((always_inline)) void solve64times64(int M,int N,int A[N][M],int B[M][N]){
     for (int i = 0;i < 8;i++){
         for (int j = 0;j < 8;j++){
             if (i == j) continue;
-            transpose_submat(M,N,A,B,i * 8,j * 8,j * 8,i * 8,8,8);
+            solve88_6464(M,N,A,B,i * 8,j * 8,j * 8,i * 8);
         }
     }
-    for (int i = 0;i < 8;i++) solve_diag8(M,N,A,B,i * 8);
+    for (int i = 0;i < 8;i++) solved8_6464(M,N,A,B,i * 8);
 }
 
-void solve61times67(int M,int N,int A[N][M],int B[M][N]){
+inline int getlineid(int st,int x,int y,int M,int N){
 
+}
+
+void transpose_line(int M,int N,int A[N][M],int B[M][N],int s){
+    int a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11;
+    a0 = A[64][s],a1 = A[65][s],a2 = A[66][s];
+    a3 = A[64][s + 1],a4 = A[65][s + 1],a5 = A[66][s + 1];
+    a6 = A[64][s + 2],a7 = A[65][s + 2],a8 = A[66][s + 2];
+    a9 = A[64][s + 3],a10 = A[65][s + 3],a11 = A[66][s + 3];
+    for (int j = 0;j < 8;j++) B[s][j] = A[j][s];
+    B[s][64] = a0,B[s][65] = a1,B[s][66] = a2;
+    for (int j = 0;j < 8;j++) B[s+1][j] = A[j][s+1];
+    B[s+1][64] = a3,B[s+1][65] = a4,B[s+1][66] = a5;
+    for (int j = 0;j < 8;j++) B[s+2][j] = A[j][s+2];
+    B[s+2][64] = a6,B[s+2][65] = a7,B[s+2][66] = a8;
+    for (int j = 0;j < 8;j++) B[s+3][j] = A[j][s+3];
+    B[s+3][64] = a9,B[s+3][65] = a10,B[s+3][66] = a11;
+    for (int j = 0;j < 8;j++) B[s+4][j] = A[j][s+4];
+
+    a0 = A[64][s+4],a1 = A[65][s+4],a2 = A[66][s+4];
+    a3 = A[64][s+5],a4 = A[65][s+5],a5 = A[66][s+5];
+    a6 = A[64][s+6],a7 = A[65][s+6],a8 = A[66][s+6];
+    a9 = A[64][s+7],a10 = A[65][s+7],a11 = A[66][s+7];
+
+    B[s+4][64] = a0,B[s+4][65] = a1,B[s+4][66] = a2;
+    for (int j = 0;j < 8;j++) B[s+5][j] = A[j][s+5];
+    B[s+5][64] = a3,B[s+5][65] = a4,B[s+5][66] = a5;
+    for (int j = 0;j < 8;j++) B[s+6][j] = A[j][s+6];
+    B[s+6][64] = a6,B[s+6][65] = a7,B[s+6][66] = a8;
+    for (int j = 0;j < 8;j++) B[s+7][j] = A[j][s+7];
+    B[s+7][64] = a9,B[s+7][65] = a10,B[s+7][66] = a11;
+    
+    transpose_submat(M,N,A,B,0,s,s,0,8,8);
+    for (int i = 0;i < 8;i++){
+        for (int j = 64;j < 67;j++) B[s + i][j] = A[j][s + i];
+    }
+
+    for (int i = 1;i < 8;i++){
+        transpose_submat(M,N,A,B,i * 8,s,s,i * 8,8,8);
+    }
+
+    
+}
+
+int mymin(int x,int y) {return x < y ? x : y;}
+
+void solve61times67(int M,int N,int A[N][M],int B[M][N]){
+    int PM = 17,PN = 17;
+    // for (int i = 0;i < 7;i++){
+    //     transpose_line(M,N,A,B,i * 8);
+    //     for (int ii = 0;ii < 8;ii++){
+    //         for (int j = 64;j < 67;j++) B[i * 8 + ii][j] = A[j][i * 8 + ii];
+    //     }
+    // }
+    // for (int i = 0;i < 7;i++) solve_diag8(M,N,A,B,i * 8);
+    // for (int i = 56;i < 61;i++){
+    //     for (int j = 0;j < 67;j++) B[i][j] = A[j][i];
+    // }
+    // for (int i = 0;i < N;i++){
+    //     for (int j = 0;j < M;j++){
+    //         B[j][i] = A[i][j];
+    //     }
+    // }
+    for (int i = 0;i < M;i += PM){
+        for (int j = 0;j < N;j += PN){
+            transpose_submat(M,N,A,B,j,i,i,j,mymin(PM,M - i),mymin(PN,N - j));
+        }
+    }
 }
 
 char transpose_submit_desc[] = "Transpose submission";
@@ -199,6 +276,9 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N])
     }
     if (M == 64 && N == 64){
         solve64times64(M,N,A,B);
+    }
+    if (M == 61 && N == 67){
+        solve61times67(M,N,A,B);
     }
 }
 
@@ -262,6 +342,7 @@ int is_transpose(int M, int N, int A[N][M], int B[M][N])
     for (i = 0; i < N; i++) {
         for (j = 0; j < M; ++j) {
             if (A[i][j] != B[j][i]) {
+                fprintf(stderr,"Error: A[%d][%d] != B[%d][%d], where A[%d][%d]=%d, B[%d][%d]=%d\n",i,j,j,i,i,j,A[i][j],j,i,B[j][i]);
                 return 0;
             }
         }
