@@ -1,0 +1,40 @@
+./sdriver.pl -t trace12.txt -s ./tshref -a "-p"
+#
+# trace12.txt - Forward SIGTSTP to every process in foreground process group
+#
+tsh> ./mysplit 4
+Job [1] (19285) stopped by signal 20
+tsh> jobs
+[1] (19285) Stopped ./mysplit 4 
+tsh> /bin/ps a
+    PID TTY      STAT   TIME COMMAND
+    203 hvc0     Ss+    0:00 /sbin/agetty -o -p -- \u --noclear --keep-baud - 115200,38400,9600 vt220
+    222 tty1     Ss+    0:00 /sbin/agetty -o -p -- \u --noclear - linux
+    311 pts/1    Ss     0:00 /bin/login -f
+    332 pts/0    Ss+    0:00 sh -c "$VSCODE_WSL_EXT_LOCATION/scripts/wslServer.sh" 072586267e68ece9a47aa43f8c108e0dcbf44622 stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=2014870313-258356141-2409622120-2018583679 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+    333 pts/0    S+     0:00 sh /mnt/c/Users/24053/.vscode/extensions/ms-vscode-remote.remote-wsl-0.104.3/scripts/wslServer.sh 072586267e68ece9a47aa43f8c108e0dcbf44622 stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=2014870313-258356141-2409622120-2018583679 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+    339 pts/0    S+     0:00 sh /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/bin/code-server --host=127.0.0.1 --port=0 --connection-token=2014870313-258356141-2409622120-2018583679 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+    343 pts/0    Sl+    0:09 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/server-main.js --host=127.0.0.1 --port=0 --connection-token=2014870313-258356141-2409622120-2018583679 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+    387 pts/1    S+     0:00 -bash
+    471 pts/2    Ssl+   0:02 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 46665 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+    478 pts/0    Sl+    0:13 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/bootstrap-fork --type=ptyHost --logsPath /home/pyd/.vscode-server/data/logs/20260226T092046
+    499 pts/3    Ssl+   0:15 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 46665 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+    515 pts/0    Sl+    0:01 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/bootstrap-fork --type=fileWatcher
+    545 pts/0    Sl+    2:01 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node --dns-result-order=ipv4first /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+    630 pts/0    Sl+    1:07 /home/pyd/.vscode-server/extensions/ms-vscode.cpptools-1.30.5/bin/cpptools
+   2621 pts/7    Ss     0:00 /bin/bash --init-file /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+   3131 pts/0    Sl+    0:01 /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/extensions/markdown-language-features/dist/serverWorkerMain --node-ipc --clientProcessId=545
+   6835 pts/7    S      0:00 ./tsh -p
+   7371 pts/7    S      0:00 ./tsh -p
+   7694 pts/7    S      0:00 ./tsh -p
+  15410 pts/0    Sl+    0:02 /home/pyd/.vscode-server/extensions/ms-vscode.cpptools-1.30.5/bin/cpptools-srv 630 {B8090F95-6C6F-4371-A7AC-670DDE76502D}
+  19280 pts/7    S+     0:00 make rtest12
+  19281 pts/7    S+     0:00 /bin/sh -c ./sdriver.pl -t trace12.txt -s ./tshref -a "-p"
+  19282 pts/7    S+     0:00 /usr/bin/perl ./sdriver.pl -t trace12.txt -s ./tshref -a -p
+  19283 pts/7    S+     0:00 ./tshref -p
+  19285 pts/7    T      0:00 ./mysplit 4
+  19286 pts/7    T      0:00 ./mysplit 4
+  19301 pts/0    S+     0:00 /bin/sh -c "/home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/vs/base/node/cpuUsage.sh" 2621 19280 19281 19282 19283 19285 19286
+  19302 pts/0    S+     0:00 /bin/bash /home/pyd/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/out/vs/base/node/cpuUsage.sh 2621 19280 19281 19282 19283 19285 19286
+  19311 pts/0    S+     0:00 sleep 1
+  19314 pts/7    R      0:00 /bin/ps a
